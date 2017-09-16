@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Component;
 
+import io.swagger.annotations.Api;
+
+@Api(value = "ToDo Resource", produces = "application/json")
 @Component
 @Path("/todo")
 public class ToDoResource {

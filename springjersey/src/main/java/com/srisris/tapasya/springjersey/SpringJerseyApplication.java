@@ -2,9 +2,15 @@ package com.srisris.tapasya.springjersey;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-@SpringBootApplication
-public class SpringJerseyApplication {
+@SpringBootApplication(scanBasePackages={"com.srisris.tapasya.springjersey"})
+public class SpringJerseyApplication extends SpringBootServletInitializer {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(SpringJerseyApplication.class);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringJerseyApplication.class, args);
