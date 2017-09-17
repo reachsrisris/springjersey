@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import com.srisris.tapasya.springjersey.repository.ToDoRepository;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(value = "ToDo Resource", produces = "application/json")
 @Component
@@ -32,58 +33,51 @@ public class ToDoResource {
 	@Autowired
 	private ToDoRepository todoRepository;
 
-
-
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "This Operation lists all the ToDo's in the DB")
 	public Response list() {
 
-		
 		return Response.ok(todoRepository.findAll(), MediaType.APPLICATION_JSON).build();
 	}
 
-//	@Path("/getTodo/{id}")
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public ToDo getTodo(@PathParam("id") String id) {
-//		for (ToDo tt : todoList) {
-//			if (tt.getId().equals(id)) {
-//				return tt;
-//			}
-//		}
-//		return null;
-//	}
-//
-//	@Path("/add")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@POST
-//	public void addToDo(ToDo t) {
-//		ToDo td = new ToDo();
-//		td.setId(t.getId());
-//		td.setSummary(t.getSummary());
-//		td.setDescription(t.getDescription());
-//		todoList.add(td);
-//
-//	}
-//
-//	@Path("/update")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@PUT
-//	public void updateToDo(ToDo t) {
-//
-//		ListIterator<ToDo> iterator = todoList.listIterator();
-//		while (iterator.hasNext()) {
-//			ToDo next = iterator.next();
-//			if (next.getId().equals(t.getId())) {
-//				next.setId(t.getId());
-//				next.setSummary(t.getSummary());
-//				next.setDescription(t.getDescription());
-//
-//			}
-//		}
-//
-//	}
-//
+	@Path("/show/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "This Operations find ToDo by ID specified")
+	public ToDo show(@PathParam("id") String id) {
+		return todoRepository.findOne(id);
+	}
 
+	@Path("/add")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@POST
+	@ApiOperation(value = "Adds a new ToDo in the DB")
+	public Response save(ToDo t) {
+
+		todoRepository.save(t);
+		return Response.ok(todoRepository.findOne(t.getId()), MediaType.APPLICATION_JSON).build();
+
+	}
+	//
+	// @Path("/update")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	// @PUT
+	// public void updateToDo(ToDo t) {
+	//
+	// ListIterator<ToDo> iterator = todoList.listIterator();
+	// while (iterator.hasNext()) {
+	// ToDo next = iterator.next();
+	// if (next.getId().equals(t.getId())) {
+	// next.setId(t.getId());
+	// next.setSummary(t.getSummary());
+	// next.setDescription(t.getDescription());
+	//
+	// }
+	// }
+	//
+	// }
+	//
 
 }
