@@ -2,3 +2,11 @@
 server.servlet-path: /
 # Jersey dispatcher servlet
 spring.jersey.application-path: /api
+
+#Mongo DB config
+spring:
+  data:
+    mongodb:
+      database: myspringjersey
+      host: localhost
+      port: 27017
