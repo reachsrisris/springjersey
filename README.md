@@ -1,4 +1,5 @@
-# springjersey
+# Spring Jersey & Swagger Integration Project
+
 1. Create a SpringBoot Starter Project
 
 2. Add Jersey Starter Dependency for writing JAX- RS(Jersey) Restful services
