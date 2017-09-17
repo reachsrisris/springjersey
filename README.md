@@ -1,6 +1,6 @@
 # Spring Jersey & Swagger Integration Project
 
-Note: Need to clean up the documentation - <Work in Progress"
+Note: Need to clean up the documentation - <Work in Progress/>
 
 1. Create a SpringBoot Starter Project
 
